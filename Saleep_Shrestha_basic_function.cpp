@@ -1,10 +1,8 @@
-
 //Name: Saleep Shrestha
 //ID: w10167735
-//Program purpose: Design to implement the CRUD (Create, Read, Update, Delete) operations on a linked list based data strucutre. Allows user to insert, search, update, delete and view elements in the list.
+//Program purpose: Design to implement the CRUD (Create, Read, Update, Delete) operations on a linked list-based data structure. Allows user to add, find, edit, remove, and display elements in the list.
 
 //This structure is effective for dynamic data handling where data elements are inserted or removed frequently.
-
 
 #include <iostream>
 #include <string>
@@ -36,7 +34,7 @@ public:
             }
             temp->nextPtr = newNode;
         }
-        cout << "Inserted \"" << value << "\" into the DataStream.\n";
+        cout << "Added \"" << value << "\" to the list.\n";
     }
 
     bool searchData(string value) {
@@ -68,7 +66,7 @@ public:
             Node* temp = headPtr;
             headPtr = headPtr->nextPtr;
             delete temp;
-            cout << "Deleted \"" << value << "\" from the DataStream.\n";
+            cout << "Removed \"" << value << "\" from the list.\n";
             return true;
         }
 
@@ -81,7 +79,7 @@ public:
             Node* temp = current->nextPtr;
             current->nextPtr = temp->nextPtr;
             delete temp;
-            cout << "Deleted \"" << value << "\" from the DataStream.\n";
+            cout << "Removed \"" << value << "\" from the list.\n";
             return true;
         }
         return false;
@@ -89,7 +87,7 @@ public:
 
     void displayStream() {
         Node* temp = headPtr;
-        cout << "Current DataStream: ";
+        cout << "Current List: ";
         while (temp) {
             cout << "\"" << temp->data << "\" -> ";
             temp = temp->nextPtr;
@@ -104,51 +102,51 @@ void runMenu() {
     string value, newValue;
 
     do {
-        cout << "\nDataStream Operations:\n";
-        cout << "1. Insert Data\n";
-        cout << "2. Search Data\n";
-        cout << "3. Update Data\n";
-        cout << "4. Delete Data\n";
-        cout << "5. Display DataStream\n";
-        cout << "6. Exit\n";
-        cout << "Enter your choice: ";
+        cout << "\nList Operations:\n";
+        cout << "1. Add Item\n";
+        cout << "2. Find Item\n";
+        cout << "3. Edit Item\n";
+        cout << "4. Remove Item\n";
+        cout << "5. Show All Items\n";
+        cout << "6. Quit\n";
+        cout << "Choose an option: ";
         cin >> choice;
-        cin.ignore();  
+        cin.ignore();
 
         switch (choice) {
             case 1:
-                cout << "Enter value to insert: ";
+                cout << "Enter item to add: ";
                 getline(cin, value);
                 dataStream.insertData(value);
                 break;
             case 2:
-                cout << "Enter value to search: ";
+                cout << "Enter item to find: ";
                 getline(cin, value);
-                if (dataStream.searchData(value)) cout << "\"" << value << "\" found in the DataStream.\n";
-                else cout << "\"" << value << "\" not found in the DataStream.\n";
+                if (dataStream.searchData(value)) cout << "\"" << value << "\" is in the list.\n";
+                else cout << "\"" << value << "\" is not in the list.\n";
                 break;
             case 3:
-                cout << "Enter the old value to update: ";
+                cout << "Enter item to edit: ";
                 getline(cin, value);
-                cout << "Enter the new value: ";
+                cout << "Enter new value: ";
                 getline(cin, newValue);
-                if (dataStream.updateData(value, newValue)) cout << "Data updated.\n";
-                else cout << "Data not found in the DataStream.\n";
+                if (dataStream.updateData(value, newValue)) cout << "Item updated.\n";
+                else cout << "Item not found in the list.\n";
                 break;
             case 4:
-                cout << "Enter value to delete: ";
+                cout << "Enter item to remove: ";
                 getline(cin, value);
-                if (dataStream.deleteData(value)) cout << "Data deleted.\n";
-                else cout << "Data not found in the DataStream.\n";
+                if (dataStream.deleteData(value)) cout << "Item removed.\n";
+                else cout << "Item not found in the list.\n";
                 break;
             case 5:
                 dataStream.displayStream();
                 break;
             case 6:
-                cout << "Exiting...\nHave a good day\n";
+                cout << "Goodbye!\n";
                 break;
             default:
-                cout << "Invalid choice. Try again.\n";
+                cout << "Invalid option. Please try again.\n";
         }
     } while (choice != 6);
 }
